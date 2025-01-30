@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@atlanhq/atlan-design-system':
         specifier: 1.0.1-rc.20250120060655
-        version: 1.0.1-rc.20250120060655(@internationalized/date@3.5.5)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
+        version: 1.0.1-rc.20250120060655(@internationalized/date@3.7.0)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -1677,7 +1677,7 @@ packages:
 
 snapshots:
 
-  '@ark-ui/anatomy@3.5.0(@internationalized/date@3.5.5)':
+  '@ark-ui/anatomy@3.5.0(@internationalized/date@3.7.0)':
     dependencies:
       '@zag-js/accordion': 0.62.1
       '@zag-js/anatomy': 0.62.1
@@ -1690,7 +1690,7 @@ snapshots:
       '@zag-js/color-utils': 0.62.1
       '@zag-js/combobox': 0.62.1
       '@zag-js/date-picker': 0.62.1
-      '@zag-js/date-utils': 0.62.1(@internationalized/date@3.5.5)
+      '@zag-js/date-utils': 0.62.1(@internationalized/date@3.7.0)
       '@zag-js/dialog': 0.62.1
       '@zag-js/editable': 0.62.1
       '@zag-js/file-upload': 0.62.1
@@ -1775,9 +1775,9 @@ snapshots:
       '@zag-js/vue': 0.82.1(vue@3.5.13(typescript@5.6.3))
       vue: 3.5.13(typescript@5.6.3)
 
-  '@atlanhq/atlan-design-system@1.0.1-rc.20250120060655(@internationalized/date@3.5.5)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))':
+  '@atlanhq/atlan-design-system@1.0.1-rc.20250120060655(@internationalized/date@3.7.0)(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))':
     dependencies:
-      '@ark-ui/anatomy': 3.5.0(@internationalized/date@3.5.5)
+      '@ark-ui/anatomy': 3.5.0(@internationalized/date@3.7.0)
       '@ark-ui/vue': 4.9.1(vue@3.5.13(typescript@5.6.3))
       '@pandacss/core': 0.51.1
       '@pandacss/dev': 0.51.1(typescript@5.6.3)
@@ -2603,6 +2603,10 @@ snapshots:
   '@zag-js/date-utils@0.62.1(@internationalized/date@3.5.5)':
     dependencies:
       '@internationalized/date': 3.5.5
+
+  '@zag-js/date-utils@0.62.1(@internationalized/date@3.7.0)':
+    dependencies:
+      '@internationalized/date': 3.7.0
 
   '@zag-js/date-utils@0.82.1(@internationalized/date@3.7.0)':
     dependencies:

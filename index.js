@@ -105,7 +105,7 @@ ignore-workspace-root-check=true
       console.log("✅ Private package installed successfully.");
     } catch (error) {
       console.log("⚠ Private package installation failed. You may need to run this manually:");
-      console.log("   pnpm add @atlanhq/atlan-design-system@1.0.1-rc.20250120060655");
+      console.log("   pnpm add @atlanhq/atlan-design-system");
     }
 
     console.log("\n✅ Project setup complete! Run the following to start working:");
