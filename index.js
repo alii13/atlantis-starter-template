@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Set your template repository
-const repoUrl = "https://github.com/your-username/your-template-repo.git";
+const repoUrl = "https://github.com/alii13/atlantis-starter-template.git";
 
 // Function to prompt user input
 const askQuestion = (query, isPassword = false) => {
