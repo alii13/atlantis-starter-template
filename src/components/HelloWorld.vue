@@ -22,6 +22,7 @@ const count = ref(0);
       Edit
       <code>components/HelloWorld.vue</code> to test HMR
     </p>
+    <p>Checkout all the Atlantis components in the <a target=”_blank” href="https://k.atlan.dev/atlantis-storybook">storybook</a>.</p>
   </div>
 </template>
 
