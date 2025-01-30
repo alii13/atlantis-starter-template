@@ -72,6 +72,7 @@ const init = async () => {
     }
 
     // Ask for GitHub Personal Access Token (PAT)
+    console.log("\n🔑 Enter your GitHub classic PAT (for private package access): ");
     const githubToken = await askQuestion("\n🔑 Enter your GitHub classic PAT (for private package access): ", true);
 
     if (githubToken) {
