@@ -110,7 +110,7 @@ ignore-workspace-root-check=true
 
     console.log("\n✅ Project setup complete! Run the following to start working:");
     console.log(`   cd ${projectName}`);
-    console.log("   pnpm start");
+    console.log("   pnpm run dev");
     console.log("\n🚀 Happy coding!");
 
   } catch (error) {
