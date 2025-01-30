@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const repoUrl = "https://github.com/your-username/your-template-repo.git";
+const repoUrl = "https://github.com/alii13/atlantis-starter-template.git";
 
 // Function to prompt user input
 const askQuestion = (query, isPassword = false) => {
