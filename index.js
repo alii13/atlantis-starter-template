@@ -6,11 +6,12 @@ import path from "path";
 import readline from "readline";
 import { fileURLToPath } from "url";
 
-// Convert __dirname and __filename (since they don't exist in ESM)
+// Fix __dirname for ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const repoUrl = "https://github.com/alii13/atlantis-starter-template.git";
+// Set your template repository
+const repoUrl = "https://github.com/your-username/your-template-repo.git";
 
 // Function to prompt user input
 const askQuestion = (query, isPassword = false) => {
@@ -18,7 +19,7 @@ const askQuestion = (query, isPassword = false) => {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
-      terminal: true,
+      terminal: true
     });
 
     if (isPassword) {
@@ -38,7 +39,7 @@ const askQuestion = (query, isPassword = false) => {
 const init = async () => {
   const projectName = process.argv[2];
   if (!projectName) {
-    console.error("❌ Please specify a project name: `create-my-template <project-name>`");
+    console.error("❌ Please specify a project name: `atlantis-starter-template <project-name>`");
     process.exit(1);
   }
 
@@ -46,13 +47,32 @@ const init = async () => {
 
   try {
     console.log("🚀 Cloning template repository...");
-    execSync(`git clone ${repoUrl} ${projectPath}`, { stdio: "inherit" });
+    execSync(`git clone --depth 1 ${repoUrl} ${projectPath}`, { stdio: "inherit" });
 
     console.log("📁 Changing directory...");
     process.chdir(projectPath);
 
+    // Remove `.git` folder so the new project is clean
+    execSync("rm -rf .git");
+
+    // 🛑 Remove `bin` field from package.json inside the template
+    const packageJsonPath = path.join(projectPath, "package.json");
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+      delete packageJson.bin; // Remove bin field
+      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+      console.log("🗑 Removed `bin` field from package.json in the new project.");
+    }
+
+    // 🗑 Remove `index.js` from the new project
+    const indexFilePath = path.join(projectPath, "index.js");
+    if (fs.existsSync(indexFilePath)) {
+      fs.unlinkSync(indexFilePath);
+      console.log("🗑 Removed `index.js` from the new project.");
+    }
+
     // Ask for GitHub Personal Access Token (PAT)
-    const githubToken = await askQuestion("🔑 Enter your GitHub PAT (for private package access): ", true);
+    const githubToken = await askQuestion("\n🔑 Enter your GitHub classic PAT (for private package access): ", true);
 
     if (githubToken) {
       console.log("📜 Creating .npmrc file...");

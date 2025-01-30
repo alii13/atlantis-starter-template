@@ -19,6 +19,6 @@
     "vue-tsc": "^2.2.0"
   },
   "bin": {
-    "create-my-template": "./index.js"
+    "atlantis-starter-template": "./index.js"
   }
 }
