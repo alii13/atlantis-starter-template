@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <h1>{{ msg }}</h1>
+    <h1 class="text-2xl font-bold text-center mt-4">{{ msg }}</h1>
 
     <div class="card">
         <AtlantisButton
@@ -18,16 +18,21 @@
             size="default"
         >
         </AtlantisButton>
-        <p>
-            Edit
-            <code>components/HelloWorld.vue</code> to test HMR
-        </p>
-        <p>
-            Checkout all the Atlantis components in the
-            <a target="”_blank”" href="https://k.atlan.dev/atlantis-storybook"
-                >storybook</a
-            >.
-        </p>
+        <div class="mt-4">
+            <p>
+                Edit
+                <code>components/HelloWorld.vue</code> to test HMR
+            </p>
+            <p>
+                Checkout all the Atlantis components in the
+                <a
+                    target="”_blank”"
+                    href="https://k.atlan.dev/atlantis-storybook"
+                    class="text-primary"
+                    >storybook</a
+                >.
+            </p>
+        </div>
     </div>
 </template>
 
