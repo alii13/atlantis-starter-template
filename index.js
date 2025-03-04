@@ -99,13 +99,13 @@ ignore-workspace-root-check=true
       console.log("   pnpm install");
     }
 
-    console.log("📦 Installing @atlanhq/atlan-design-system@latest using pnpm...");
+    console.log("📦 Installing @atlanhq/atlantis@latest using pnpm...");
     try {
-      execSync("pnpm add @atlanhq/atlan-design-system@latest", { stdio: "inherit" });
+      execSync("pnpm add @atlanhq/atlantis@latest", { stdio: "inherit" });
       console.log("✅ Private package installed successfully.");
     } catch (error) {
       console.log("⚠ Private package installation failed. You may need to run this manually:");
-      console.log("   pnpm add @atlanhq/atlan-design-system");
+      console.log("   pnpm add @atlanhq/atlantis");
     }
 
     console.log("\n✅ Project setup complete! Run the following to start working:");
