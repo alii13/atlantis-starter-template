@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { ref } from 'vue'
-    import { Button as AtlantisButton } from '@atlanhq/atlan-design-system'
+    import { Button as AtlantisButton } from '@atlanhq/atlantis'
 
     defineProps<{ msg: string }>()
 
