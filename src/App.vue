@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Button, Heading, Input, Label, Banner } from '@atlanhq/atlantis'
     import { ref } from 'vue'
+    import apiFetch from '@api'
 
     const apiError = ref(false)
     const apiSuccess = ref(false)
@@ -10,19 +11,16 @@
         port: '',
         extra: { database: '' },
         authType: 'basic',
-        username:'',
-        password:'',
+        username: '',
+        password: '',
     })
     const callApi = async () => {
         isLoading.value = true
         apiError.value = false
         apiSuccess.value = false
         try {
-            const response = await fetch(`/api/workflows/v1/auth`, {
+            const response = await apiFetch('/workflows/v1/auth', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(payload.value),
             })
             const data = await response.json()
@@ -78,7 +76,7 @@
             </div>
         </div>
 
-        <Button type="primary" @click="callApi" :isLoading="isLoading"
+        <Button type="primary" @click="callApi" :isLoading="true"
             >Test Connection</Button
         >
 

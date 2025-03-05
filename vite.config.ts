@@ -1,4 +1,4 @@
-import { defineConfig, UserConfig, ConfigEnv } from 'vite'
+import { defineConfig, UserConfig, ConfigEnv,loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
@@ -11,13 +11,14 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 // https://vite.dev/config/
 export default defineConfig(({ mode: _mode }: ConfigEnv): UserConfig => {
+    const env = loadEnv(_mode, process.cwd());
     return {
         plugins: [vue()],
         envDir: '../',
         server: {
             proxy: {
-                '/': {
-                    target: 'http://localhost:8000',
+                '/api': {
+                    target: env.VITE_DEV_API_BASE_URL, // Uses the backend URL from .env
                     changeOrigin: true,
                     secure: false,
                 },
@@ -27,6 +28,7 @@ export default defineConfig(({ mode: _mode }: ConfigEnv): UserConfig => {
             alias: {
                 '~/': path.resolve(__dirname, 'src'),
                 '@/': path.resolve(__dirname, 'src/components'),
+                '@api': path.resolve(__dirname, 'src/apiClient'),
             },
         },
         define: {
