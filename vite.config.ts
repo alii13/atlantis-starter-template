@@ -17,11 +17,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         envDir: '../',
         server: {
             proxy: {
-                '/api': {
+                '/workflows': {
                     target: env.VITE_DEV_API_BASE_URL, // Uses the backend URL from .env
                     changeOrigin: true,
                     secure: false,
-                    rewrite: (path) => path.replace(/^\/api/, ''),
                 },
             },
         },
