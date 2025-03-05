@@ -1,7 +1,7 @@
 {
   "name": "atlantis-starter-template",
   "private": false,
-  "version": "0.0.16",
+  "version": "0.0.17",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ark-ui/vue": "^4.9.2",
-    "@atlanhq/atlantis": "^1.2.0",
     "@tailwindcss/typography": "^0.5.9",
     "tailwindcss": "^3.4.4",
     "vue": "^3.5.13"
