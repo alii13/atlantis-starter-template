@@ -1,41 +1,94 @@
 <script setup lang="ts">
-    import HelloWorld from './components/HelloWorld.vue'
+    import { Button, Heading, Input, Label, Banner } from '@atlanhq/atlantis'
+    import { ref } from 'vue'
+
+    const apiError = ref(false)
+    const apiSuccess = ref(false)
+    const isLoading = ref(false)
+    const payload = ref({
+        host: '',
+        port: '',
+        extra: { database: '' },
+        authType: 'basic',
+        username:'',
+        password:'',
+    })
+    const callApi = async () => {
+        isLoading.value = true
+        apiError.value = false
+        apiSuccess.value = false
+        try {
+            const response = await fetch(`/api/workflows/v1/auth`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload.value),
+            })
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.message)
+            }
+
+            apiSuccess.value = true
+            return data.success
+        } catch (error) {
+            apiError.value = true
+        } finally {
+            isLoading.value = false
+        }
+    }
 </script>
 
 <template>
-    <div class="flex items-center justify-center">
-        <a href="https://vite.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/atlan.svg" class="logo vue" alt="Atlan logo" />
-        </a>
-        <a href="https://v3.tailwindcss.com/docs" target="_blank">
-            <img
-                src="./assets/tailwind.svg"
-                class="logo vue"
-                alt="Tailwind logo"
-            />
-        </a>
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
+        <Heading size="xl">Postgress app</Heading>
+        <div class="grid cols-2 mt-4">
+            <div class="mb-4 flex items-center gap-4">
+                <Label>Host</Label>
+                <Input placeholder="Host" v-model="payload.host" />
+            </div>
+            <div class="mb-4 flex items-center gap-4">
+                <Label>Port</Label>
+                <Input
+                    placeholder="Port"
+                    type="number"
+                    v-model="payload.port"
+                />
+            </div>
+            <div class="mb-4 flex items-center gap-4">
+                <Label>Username</Label>
+                <Input placeholder="Username" v-model="payload.username" />
+            </div>
+            <div class="mb-4 flex items-center gap-4">
+                <Label>Password</Label>
+                <Input
+                    placeholder="Password"
+                    type="password"
+                    v-model="payload.password"
+                />
+            </div>
+            <div class="mb-4 flex items-center gap-4">
+                <Label>Database</Label>
+                <Input
+                    placeholder="Database"
+                    v-model="payload.extra.database"
+                />
+            </div>
+        </div>
+
+        <Button type="primary" @click="callApi" :isLoading="isLoading"
+            >Test Connection</Button
+        >
+
+        <div class="mt-4" v-if="apiError">
+            <Banner type="error" message="Test connection failed" />
+        </div>
+        <div class="mt-4" v-if="apiSuccess">
+            <Banner type="success" message="Test connection successful" />
+        </div>
     </div>
-    <HelloWorld msg="Vite + Vue + Atlantis + Tailwind v3" />
 </template>
 
-<style scoped>
-    .logo {
-        height: 144px;
-        width: 144px;
-        padding: 1.5em;
-        will-change: filter;
-        transition: filter 300ms;
-    }
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-    .logo.vue:hover {
-        filter: drop-shadow(0 0 2em #42b883aa);
-    }
-</style>
+<style scoped></style>
