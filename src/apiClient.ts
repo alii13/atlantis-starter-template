@@ -1,6 +1,3 @@
-const API_BASE_URL =
-  import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_PROD_API_BASE_URL;
-
 async function apiFetch(endpoint: string, options: RequestInit = {}) {
   const defaultHeaders = {
     'Content-Type': 'application/json',
@@ -13,7 +10,7 @@ async function apiFetch(endpoint: string, options: RequestInit = {}) {
     headers: { ...defaultHeaders, ...options.headers },
   };
 
-  return fetch(`${API_BASE_URL}${endpoint}`, config);
+  return fetch(`/api${endpoint}`, config);
 }
 
 export default apiFetch;

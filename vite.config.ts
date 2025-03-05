@@ -21,6 +21,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
                     target: env.VITE_DEV_API_BASE_URL, // Uses the backend URL from .env
                     changeOrigin: true,
                     secure: false,
+                    rewrite: (path) => path.replace(/^\/api/, ''),
                 },
             },
         },
@@ -33,7 +34,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         },
         define: {
             'process.env': process.env,
-            'import.meta.env.VITE_PROD_API_BASE_URL': JSON.stringify(env.VITE_PROD_API_BASE_URL),
         },
         css: {
             postcss: {
