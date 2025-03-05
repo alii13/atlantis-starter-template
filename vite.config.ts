@@ -10,8 +10,8 @@ import tailwindConfig from './tailwind.config.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 // https://vite.dev/config/
-export default defineConfig(({ mode: _mode }: ConfigEnv): UserConfig => {
-    const env = loadEnv(_mode, process.cwd());
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+    const env = loadEnv(mode, process.cwd());
     return {
         plugins: [vue()],
         envDir: '../',
@@ -33,6 +33,7 @@ export default defineConfig(({ mode: _mode }: ConfigEnv): UserConfig => {
         },
         define: {
             'process.env': process.env,
+            'import.meta.env.VITE_PROD_API_BASE_URL': JSON.stringify(env.VITE_PROD_API_BASE_URL),
         },
         css: {
             postcss: {
